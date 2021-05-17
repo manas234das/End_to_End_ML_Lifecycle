@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <article class="media content-section">
+      <div class="media-body">
+        <h5>Predicted price <br>-----------------------</h5>
+          <article class="media">
+            <div class="media-body">
+              Data : <br> 
+              CRIM={{ test_data[0] }}, ZN={{ test_data[1] }}, INDUS={{ test_data[2] }}, CHAS={{ test_data[3] }},
+              NOX={{ test_data[4] }}, RM={{ test_data[5] }}, AGE={{ test_data[6] }}, DIS={{ test_data[7] }},
+              RAD={{ test_data[8] }}, TAX={{ test_data[9] }}, PTRATIO={{ test_data[10] }}, B={{ test_data[11] }},
+              LSTAT={{ test_data[12] }}
+              <br>
+              {{ prediction_text }}
+            </div>
+          </article>
+      </div>
+    </article>
+    <article class='media content-section'>
+      <div class="media-body">
+        <h6>Request Description</h6>
+        <p>From the dataset 50 records were randomly sampled and were used for prediction using best model</p>
+      </div>
+    </article>
+    <div class="alert alert-info">
+      Current Best model : {{best_model}}
+    </div>
+    <div class="alert alert-info media-body">
+      <h5>Model Monitoring <br>-----------------------</h5>
+      <img src="{{plot_img}}" class="img-fluid" alt="Monitoring plot"><br><br>
+      <h6>Percentage error : {{delta}}</h6>
+    </div>
+      
+  </div>
+  <div class="col-md-6">
+    <article class="media content-section">
+      <div class="media-body">
+        <h5>Make Request <br>-------------------</h5>
+      {% for test in test_list %}
+        <article class="media content-section">
+          <div class="media-body">
+            <h6><a href="{{ url_for('predict', idx = test.Sample) }}">Request : {{ test.Sample }}</h6>
+          </div>
+        </article>
+      {% endfor %}
+      </div>
+    </article>
+  </div>
+</div>
+    
+{% endblock content %}

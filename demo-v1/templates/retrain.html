@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="alert alert-info">
+          Current Best model : {{best_model}}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="alert alert-primary">
+          {{ text }}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="content-section">
+            <form action="{{ url_for('retrain')}}" method="post">
+              <h6>Basic Algorithms <br>-----------------------</h6>
+              <fieldset class="form-group">
+                <select name="algo" id="algo" class="browser-default custom-select">
+                  <option value="Linear Regression">Linear Regression</option>
+                  <option value="SGD Regression">SGD Regression</option>
+                </select>
+                <br><br>
+                <select class="browser-default custom-select" name="penalty" id="penalty">
+                    <option value="l1">l1</option>
+                    <option value="l2">l2</option>
+                </select>
+                <br><br>
+                <input type="text" class="form-control" name="alpha" placeholder="Alpha (float:0-1)" required="required" /><br>
+                <input type="text" class="form-control" name="l1_ratio" placeholder="l1_ratio (float:0-1)" required="required" /><br>
+                <select class="browser-default custom-select" name="learning_rate" id="learning_rate">
+                    <option value="constant">constant</option>
+                    <option value="optimal">optimal</option>
+                    <option value="invscaling">invscaling</option>
+                    <option value="adaptive">adaptive</option>
+                </select>
+                <br>
+                <br>
+                <button type="submit" class="btn btn-primary btn-block btn-small">Retrain</button>
+              </fieldset>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="content-section">
+            <form action="{{ url_for('retrain')}}" method="post">
+              <h6>Tree Based Algorithms <br>-------------------------------</h6>
+              <fieldset class="form-group">
+                <select name="algo" id="algo" class="browser-default custom-select">
+                  <option value="RF Regression">Random Forest Regression</option>
+                  <option value="DT Regression">Decision Tree Regression</option>
+                </select>
+                <br><br>
+                <input type="text" class="form-control" name="n_estimators" placeholder="n_estimators (int)" required="required" /><br>
+                <input type="text" class="form-control" name="max_depth" placeholder="max_depth (int)" required="required" /><br>
+                <br><br><br><br><br>
+                <button type="submit" class="btn btn-primary btn-block btn-small">Retrain</button>
+              </fieldset>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="content-section">
+            <form action="{{ url_for('retrain')}}" method="post">
+              <h6>Ensemble Algorithms <br>-----------------------------</h6>
+              <fieldset class="form-group">
+                <select name="algo" id="algo" class="browser-default custom-select">
+                  <option value="GBDT Regression">Gradient Boosted DT Regression</option>
+                  <option value="XGB Regression">XGBoost Regression</option>
+                </select>
+                <br><br>
+                <input type="text" class="form-control" name="n_estimators" placeholder="n_estimators (int)" required="required" /><br>
+                <input type="text" class="form-control" name="max_depth" placeholder="max_depth (int)" required="required" /><br>
+                <input type="text" class="form-control" name="learning_rate" placeholder="learning_rate (float:0-1)" required="required" /><br>
+                <br><br>
+                <button type="submit" class="btn btn-primary btn-block btn-small">Retrain</button>
+              </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

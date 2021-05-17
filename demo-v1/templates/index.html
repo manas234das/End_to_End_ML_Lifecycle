@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <article class="media content-section">
+      <div class="media-body">
+        <h4>
+          Boston house prices dataset <br>
+          --------------------------------------
+        </h4>
+        <h5>Data Set Characteristics:</h5>
+        <h6>Number of Instances: 506</h6>
+        <h6>Number of Attributes: 13 numeric/categorical predictive.<br>Median Value (attribute 14) is usually the target.</h6>
+        <h6>Attribute Information (in order):</h6>
+        <ol>
+          <li>CRIM : per capita crime rate by town</li>
+          <li>ZN : proportion of residential land zoned for lots over 25,000 sq.ft.</li>
+          <li>INDUS : proportion of non-retail business acres per town</li>
+          <li>CHAS : Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)</li>
+          <li>NOX : nitric oxides concentration (parts per 10 million)</li>
+          <li>RM : average number of rooms per dwelling</li>
+          <li>AGE : proportion of owner-occupied units built prior to 1940</li>
+          <li>DIS : weighted distances to five Boston employment centres</li>
+          <li>RAD : index of accessibility to radial highways</li>
+          <li>TAX : full-value property-tax rate per $10,000</li>
+          <li>PTRATIO : pupil-teacher ratio by town</li>
+          <li>B : 1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town</li>
+          <li>LSTAT : % lower status of the population</li>
+          <li>MEDV : Median value of owner-occupied homes in $1000's</li>
+        </ol>
+        <p>
+          Missing Attribute Values: None <br>
+          Creator: Harrison, D. and Rubinfeld, D.L. <br>
+        </p>
+        <p>
+          This is a copy of UCI ML housing dataset. <br>
+          https://archive.ics.uci.edu/ml/machine-learning-databases/housing/ <br>
+        </p>
+      </div>
+    </article>
+    <article class='media content-section'>
+      <div class="media-body">
+        <h6>Request Description</h6>
+        <p>From the dataset 50 records were randomly sampled and were used for prediction using best model</p>
+      </div>
+    </article>
+    <div class="alert alert-info">
+      Current Best model : {{best_model}}
+    </div>
+  </div>
+  <div class="col-md-6">
+    <article class="media content-section">
+      <div class="media-body">
+        <h5>Make Request <br>-------------------</h5>
+      {% for test in test_list %}
+        <article class="media content-section">
+          <div class="media-body">
+            <h6><a href="{{ url_for('predict', idx = test.Sample) }}">Request : {{ test.Sample }}</h6>
+          </div>
+        </article>
+      {% endfor %}
+      </div>
+    </article>
+  </div>
+</div>
+
+{% endblock content %}

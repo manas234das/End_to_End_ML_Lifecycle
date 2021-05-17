@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+
+  mlflow-server:
+
+    build: ./mlflow-server
+
+    container_name: mlflow-server
+    
+    network_mode: host
+
+    ports:
+      - "5000:5000"
+
+    environment:
+      - MLFLOW_SERVER
+
+  demo-v1:
+
+    build: ./demo-v1
+
+    container_name: demo-v1
+
+    network_mode: host
+
+    ports:
+      - "8200:8200"
+
+    environment:
+      - DEMO_SERVER
+
+    depends_on:
+      - mlflow-server
